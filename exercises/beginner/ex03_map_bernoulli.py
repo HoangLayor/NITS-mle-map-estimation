@@ -20,56 +20,21 @@ import numpy as np
 
 
 def compute_p_map(data, alpha, beta):
-    """
-    Tính p_MAP cho Bernoulli với Beta(alpha, beta) prior.
-
-    Args:
-        data: list nhị phân (0/1)
-        alpha (float): tham số α của Beta prior (> 0)
-        beta  (float): tham số β của Beta prior (> 0)
-
-    Returns:
-        float: p_MAP
-
-    Công thức:
-        p_MAP = (α + k - 1) / (α + β + n - 2)
-        với k = số lần xuất hiện 1
-
-    Gợi ý: tính n và k trước, sau đó áp dụng công thức
-    """
     x = np.array(data, dtype=float)
     n = len(x)
     k = int(np.sum(x))
-
-    # TODO
-    p_map = None  # ← điền
-
-    return p_map
+    return (alpha + k - 1) / (alpha + beta + n - 2)
 
 
 def compare_mle_map(data, alpha, beta):
-    """
-    So sánh p_MLE và p_MAP, trả về dict kết quả.
-
-    Args:
-        data: list nhị phân
-        alpha, beta: tham số prior
-
-    Returns:
-        dict với keys: 'p_mle', 'p_map', 'difference'
-
-    Gợi ý:
-        p_mle = sum(data) / len(data)
-        p_map = compute_p_map(data, alpha, beta)
-        difference = abs(p_mle - p_map)
-    """
-    # TODO
-    result = {
-        "p_mle": None,       # ← điền
-        "p_map": None,       # ← điền
-        "difference": None,  # ← điền
+    x = np.array(data, dtype=float)
+    p_mle = float(np.mean(x))
+    p_map = float(compute_p_map(data, alpha, beta))
+    return {
+        "p_mle": p_mle,
+        "p_map": p_map,
+        "difference": abs(p_mle - p_map),
     }
-    return result
 
 
 def effect_of_sample_size(alpha=2, beta=2, true_p=0.7):

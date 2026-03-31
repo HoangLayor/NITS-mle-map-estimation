@@ -18,69 +18,27 @@ import numpy as np
 
 
 def compute_p_mle(data):
-    """
-    Tính p_MLE cho phân phối Bernoulli.
-
-    Args:
-        data: list nhị phân (0 hoặc 1)
-
-    Returns:
-        float: p_MLE ∈ [0, 1]
-
-    Gợi ý: p_MLE = số lần xuất hiện 1 / tổng số mẫu
-    """
     x = np.array(data, dtype=float)
-
-    # TODO
-    p = None  # ← điền
-
-    return p
+    return np.sum(x) / len(x)
 
 
 def compute_bernoulli_log_likelihood(data, p):
-    """
-    Tính log-likelihood của Bernoulli tại p.
-
-    log L(p | X) = k * log(p) + (n-k) * log(1-p)
-
-    Args:
-        data: list nhị phân (0/1)
-        p (float): xác suất thành công (0 < p < 1)
-
-    Returns:
-        float: log-likelihood
-
-    Gợi ý: dùng np.log(), đếm k = np.sum(data)
-    """
     x = np.array(data, dtype=float)
+    k = np.sum(x)
     n = len(x)
-    k = int(np.sum(x))
-
-    # TODO: tính log-likelihood
-    log_lik = None  # ← điền
-
-    return log_lik
+    eps = 1e-12
+    p = np.clip(p, eps, 1 - eps)
+    return k * np.log(p) + (n - k) * np.log(1 - p)
 
 
 def find_best_p(data, p_candidates):
-    """
-    Tìm p tốt nhất trong danh sách candidates bằng cách
-    so sánh log-likelihood.
-
-    (Đây là cách brute-force để "thấy" MLE hoạt động)
-
-    Args:
-        data: list nhị phân
-        p_candidates: list các giá trị p cần thử
-
-    Returns:
-        float: p có log-likelihood cao nhất
-
-    Gợi ý: dùng vòng lặp for hoặc max() với key
-    """
-    # TODO
-    best_p = None  # ← điền
-
+    best_p = None
+    best_ll = -np.inf
+    for p in p_candidates:
+        ll = compute_bernoulli_log_likelihood(data, p)
+        if ll > best_ll:
+            best_ll = ll
+            best_p = p
     return best_p
 
 

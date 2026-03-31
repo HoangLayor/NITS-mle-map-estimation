@@ -20,92 +20,25 @@ Hướng dẫn:
 import numpy as np
 
 
-# ───────────────────────────────────────────────
-# PHẦN 1: Tính μ_MLE
-# ───────────────────────────────────────────────
-
 def compute_mu_mle(data):
-    """
-    Tính μ_MLE (trung bình mẫu).
-
-    Args:
-        data (list hoặc np.ndarray): danh sách số thực
-
-    Returns:
-        float: μ_MLE
-
-    Gợi ý: μ_MLE = tổng / số phần tử
-    """
     x = np.array(data, dtype=float)
+    return np.sum(x) / len(x)
 
-    # TODO: viết công thức tính μ_MLE
-    mu = None  # ← xóa dòng này và điền vào
-
-    return mu
-
-
-# ───────────────────────────────────────────────
-# PHẦN 2: Tính σ_MLE
-# ───────────────────────────────────────────────
 
 def compute_sigma_mle(data):
-    """
-    Tính σ_MLE (độ lệch chuẩn MLE — KHÔNG phải unbiased).
-
-    Args:
-        data (list hoặc np.ndarray): danh sách số thực
-
-    Returns:
-        float: σ_MLE
-
-    Gợi ý:
-        σ²_MLE = (1/n) * Σ (xi - μ_MLE)²
-        σ_MLE = sqrt(σ²_MLE)
-
-    Lưu ý: np.std(x, ddof=0) cũng cho kết quả này,
-            nhưng hãy tự tính bằng công thức!
-    """
     x = np.array(data, dtype=float)
+    mu = np.sum(x) / len(x)
+    variance = np.sum((x - mu) ** 2) / len(x)
+    return np.sqrt(variance)
 
-    # TODO: tính mu trước
-    mu = None  # ← điền
-
-    # TODO: tính variance
-    variance = None  # ← điền
-
-    # TODO: trả về sigma
-    sigma = None  # ← điền
-
-    return sigma
-
-
-# ───────────────────────────────────────────────
-# PHẦN 3: Tính log-likelihood
-# ───────────────────────────────────────────────
 
 def compute_log_likelihood(data, mu, sigma):
-    """
-    Tính log-likelihood của Gaussian tại (μ, σ) cho data.
-
-    log L(μ, σ | X) = -n/2 * log(2πσ²) - 1/(2σ²) * Σ(xi - μ)²
-
-    Args:
-        data: list hoặc np.ndarray
-        mu (float): giá trị μ
-        sigma (float): giá trị σ (> 0)
-
-    Returns:
-        float: log-likelihood
-
-    Gợi ý: dùng np.log(), np.sum(), np.pi
-    """
     x = np.array(data, dtype=float)
     n = len(x)
-
-    # TODO: tính log-likelihood theo công thức
-    log_lik = None  # ← điền
-
-    return log_lik
+    return (
+        -n / 2 * np.log(2 * np.pi * sigma**2)
+        - np.sum((x - mu) ** 2) / (2 * sigma**2)
+    )
 
 
 # ───────────────────────────────────────────────

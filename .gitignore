@@ -83,7 +83,7 @@ venv/
 *.local
 
 # Ignore solution files
-solutions/
+# solutions/
 
 # Ignore test outputs
 tests/__pycache__/

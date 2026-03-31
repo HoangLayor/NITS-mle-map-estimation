@@ -4,9 +4,7 @@
 
 ```
 main branch (team lead)
-    └── feature/ten-ban/ex01   ← mỗi người tạo branch riêng
-    └── feature/ten-ban/ex02
-    └── feature/ten-ban/ex03
+    └── feature/ten-ban   ← mỗi người tạo branch riêng
 ```
 
 ### Bước 1: Clone repo và tạo branch
@@ -14,7 +12,7 @@ main branch (team lead)
 ```bash
 git clone https://github.com/<your-org>/mle-map-learning.git
 cd mle-map-learning
-git checkout -b feature/<ten-ban>/ex01
+git checkout -b feature/<ten-ban>
 ```
 
 ### Bước 2: Làm bài tập
@@ -37,12 +35,13 @@ Kết quả xanh = đúng ✅ | Đỏ = sai, đọc thông báo lỗi để sử
 ```bash
 git add exercises/beginner/ex01_mle_gaussian.py
 git commit -m "ex01: implement compute_mu_mle and compute_sigma_mle"
-git push origin feature/<ten-ban>/ex01
+git push origin feature/<ten-ban>
 ```
+`Tương tự với ex02 và ex03`
 
 ### Bước 5: Tạo Pull Request
 
-Vào GitHub → New Pull Request → base: `main` ← compare: `feature/<ten-ban>/ex01`
+Vào GitHub → New Pull Request → base: `main` ← compare: `feature/<ten-ban>`
 
 GitHub Actions sẽ tự động chạy tests. Team lead sẽ review và merge.
 

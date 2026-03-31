@@ -115,4 +115,4 @@ pytest tests/test_map.py -v
 ## 📚 Tài liệu thêm
 
 - [Pattern Recognition and Machine Learning – Bishop](https://www.microsoft.com/en-us/research/publication/pattern-recognition-machine-learning/)
-- [Probabilistic ML – Murphy](https://probml.github.io/pml-book/)
+- [Machine Learnin cơ bản](https://machinelearningcoban.com)

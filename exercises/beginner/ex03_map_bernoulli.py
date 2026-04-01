@@ -42,7 +42,7 @@ def compute_p_map(data, alpha, beta):
     k = int(np.sum(x))
 
     # TODO
-    p_map = None  # ← điền
+    p_map = (alpha + k - 1) / (alpha + beta + n - 2)  # ← điền
 
     return p_map
 
@@ -63,11 +63,15 @@ def compare_mle_map(data, alpha, beta):
         p_map = compute_p_map(data, alpha, beta)
         difference = abs(p_mle - p_map)
     """
+    p_mle = sum(data) / len(data)
+    p_map = compute_p_map(data, alpha, beta)
+    difference = abs(p_mle - p_map)
+    
     # TODO
     result = {
-        "p_mle": None,       # ← điền
-        "p_map": None,       # ← điền
-        "difference": None,  # ← điền
+        "p_mle": p_mle,       # ← điền
+        "p_map": p_map,       # ← điền
+        "difference": difference,  # ← điền
     }
     return result
 

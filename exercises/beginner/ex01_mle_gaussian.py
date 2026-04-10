@@ -39,7 +39,7 @@ def compute_mu_mle(data):
     x = np.array(data, dtype=float)
 
     # TODO: viết công thức tính μ_MLE
-    mu = None  # ← xóa dòng này và điền vào
+    mu = np.sum(x) / len(x)  # ← xóa dòng này và điền vào
 
     return mu
 
@@ -68,13 +68,13 @@ def compute_sigma_mle(data):
     x = np.array(data, dtype=float)
 
     # TODO: tính mu trước
-    mu = None  # ← điền
+    mu = np.sum(x) / len(x)  # ← điền
 
     # TODO: tính variance
-    variance = None  # ← điền
+    variance = np.sum((x-mu)*(x-mu)) / len(x)  # ← điền
 
     # TODO: trả về sigma
-    sigma = None  # ← điền
+    sigma = np.sqrt(variance)  # ← điền
 
     return sigma
 
@@ -103,7 +103,7 @@ def compute_log_likelihood(data, mu, sigma):
     n = len(x)
 
     # TODO: tính log-likelihood theo công thức
-    log_lik = None  # ← điền
+    log_lik = -(n/2) * np.log(2*np.pi * sigma * sigma) - (1/(2 * sigma *sigma)) * np.sum((x-mu)*(x-mu))  # ← điền
 
     return log_lik
 

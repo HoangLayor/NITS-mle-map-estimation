@@ -32,7 +32,7 @@ def compute_p_mle(data):
     x = np.array(data, dtype=float)
 
     # TODO
-    p = None  # ← điền
+    p = data.count(1)/len(data)  # ← điền
 
     return p
 
@@ -57,7 +57,7 @@ def compute_bernoulli_log_likelihood(data, p):
     k = int(np.sum(x))
 
     # TODO: tính log-likelihood
-    log_lik = None  # ← điền
+    log_lik = k * np.log(p) + (n-k) * np.log(1-p)  # ← điền
 
     return log_lik
 
@@ -79,7 +79,14 @@ def find_best_p(data, p_candidates):
     Gợi ý: dùng vòng lặp for hoặc max() với key
     """
     # TODO
-    best_p = None  # ← điền
+    best_p = p_candidates[0]
+    best_ll = compute_bernoulli_log_likelihood(data, p_candidates[0])
+
+    for p in p_candidates:
+        ll = compute_bernoulli_log_likelihood(data, p)
+        if ll > best_ll:
+            best_ll = ll
+            best_p = p
 
     return best_p
 

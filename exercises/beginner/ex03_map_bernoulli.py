@@ -42,7 +42,7 @@ def compute_p_map(data, alpha, beta):
     k = int(np.sum(x))
 
     # TODO
-    p_map = None  # ← điền
+    p_map = (alpha + k - 1) / (alpha + beta + n - 2)
 
     return p_map
 
@@ -64,13 +64,15 @@ def compare_mle_map(data, alpha, beta):
         difference = abs(p_mle - p_map)
     """
     # TODO
-    result = {
-        "p_mle": None,       # ← điền
-        "p_map": None,       # ← điền
-        "difference": None,  # ← điền
-    }
-    return result
+    p_mle = np.sum(data) / len(data)
+    p_map = compute_p_map(data, alpha, beta)
+    difference = abs(p_mle - p_map)
 
+    result = {
+    "p_mle": p_mle,
+    "p_map": p_map,
+    "difference": difference,
+}
 
 def effect_of_sample_size(alpha=2, beta=2, true_p=0.7):
     """

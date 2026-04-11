@@ -73,7 +73,7 @@ def compare_mle_map(data, alpha, beta):
     "p_map": p_map,
     "difference": difference,
 }
-
+    return result
 def effect_of_sample_size(alpha=2, beta=2, true_p=0.7):
     """
     (Câu hỏi khám phá — không có test tự động)
